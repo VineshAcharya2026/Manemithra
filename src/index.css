@@ -1,0 +1,174 @@
+@import "tailwindcss";
+
+/* ── Design tokens (CSS variables) ───────────────────────────────────── */
+:root {
+  --primary-gold: #fca311;
+  --primary-gold-hover: #e69400;
+  --primary-navy: #14213d;
+  --black: #000000;
+  --white: #ffffff;
+  --gray-light: #e5e5e5;
+  --surface: #f5f5f5;
+  --text-body: #333333;
+  --text-muted: #666666;
+  --row-hover: #f8f9fa;
+  --gold-muted: rgba(252, 163, 17, 0.15);
+  --gold-focus-ring: rgba(252, 163, 17, 0.15);
+  --navy-dark: #0d1528;
+}
+
+@theme {
+  --color-gold: #fca311;
+  --color-gold-hover: #e69400;
+  --color-navy: #14213d;
+  --color-navy-dark: #0d1528;
+  --color-black: #000000;
+  --color-white: #ffffff;
+  --color-gray-light: #e5e5e5;
+  --color-surface: #f5f5f5;
+  --color-body: #333333;
+  --color-muted: #666666;
+  --color-row-hover: #f8f9fa;
+  --color-success-bg: #e8f5e9;
+  --color-success-text: #2e7d32;
+  --color-warning-bg: #fff8e1;
+  --color-warning-text: #fca311;
+  --color-error-bg: #fdecea;
+  --color-error-text: #d32f2f;
+
+  --font-sans: "DM Sans", system-ui, sans-serif;
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-surface font-sans text-body antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-bold text-navy;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply cursor-pointer rounded-lg border-none bg-gold px-6 py-3 font-sans text-sm font-semibold text-white transition-colors duration-200 hover:bg-gold-hover;
+  }
+
+  .btn-secondary {
+    @apply cursor-pointer rounded-lg border-none bg-navy px-6 py-3 font-sans text-sm font-semibold text-white transition-colors duration-200 hover:bg-navy-dark;
+  }
+
+  .btn-danger {
+    @apply cursor-pointer rounded-lg border-none bg-black px-6 py-3 font-sans text-sm font-semibold text-white transition-colors duration-200 hover:bg-[#1a1a1a];
+  }
+
+  .input-field {
+    @apply w-full rounded-lg border border-gray-light bg-white px-4 py-3 font-sans text-sm text-body outline-none transition-all duration-200 placeholder:text-muted focus:border-gold focus:ring-[3px] focus:ring-[var(--gold-focus-ring)];
+  }
+
+  .badge-success {
+    @apply inline-flex rounded-full bg-success-bg px-3 py-1 text-xs font-semibold text-success-text;
+  }
+
+  .badge-warning {
+    @apply inline-flex rounded-full bg-warning-bg px-3 py-1 text-xs font-semibold text-warning-text;
+  }
+
+  .badge-error {
+    @apply inline-flex rounded-full bg-error-bg px-3 py-1 text-xs font-semibold text-error-text;
+  }
+
+  .metric-icon {
+    @apply inline-flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--gold-muted)] text-gold;
+  }
+}
+
+@layer utilities {
+  .section-pad {
+    @apply px-[5%] py-20 md:py-24 lg:py-24;
+  }
+
+  .container-main {
+    @apply mx-auto max-w-[1200px];
+  }
+
+  .reveal {
+    @apply translate-y-6 opacity-0 transition-all duration-700 ease-out;
+  }
+
+  .reveal.visible {
+    @apply translate-y-0 opacity-100;
+  }
+
+  .shadow-card {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  }
+
+  .shadow-card-sm {
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  }
+
+  .shadow-card-md {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  }
+
+  .shadow-card-hover {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  }
+
+  .shadow-card-dark {
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+  }
+
+  .section-surface {
+    @apply bg-surface;
+  }
+
+  .section-surface-alt {
+    @apply bg-white;
+  }
+
+  /* Hero: keep main block + stats visible in one screen when possible */
+  #home {
+    min-height: 100svh;
+    min-height: 100dvh;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.25s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
