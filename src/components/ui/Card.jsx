@@ -8,9 +8,9 @@ const variants = {
   elevated:
     "bg-white border-0 shadow-card-md hover:shadow-card-hover hover:-translate-y-1",
   dark:
-    "bg-navy border border-white/10 text-white shadow-card-dark hover:shadow-card-hover hover:-translate-y-0.5",
+    "bg-teal border border-white/10 text-white shadow-card-dark hover:shadow-card-hover hover:-translate-y-0.5",
   featured:
-    "bg-navy border-2 border-gold shadow-card-md hover:shadow-card-hover hover:-translate-y-1",
+    "bg-teal border-2 border-gold shadow-card-md hover:shadow-card-hover hover:-translate-y-1",
   flat:
     "bg-white border border-gray-light shadow-card-sm hover:shadow-card hover:border-gold/40",
 };

@@ -9,10 +9,11 @@ import {
   buildQuoteWhatsAppMessage,
   openWhatsAppWithMessage,
 } from "../lib/whatsapp";
+import { useWhatsAppNumber } from "../hooks/useWhatsAppNumber";
 
 const inputCompact =
   "w-full rounded-md border border-gray-light bg-white px-3 py-2 font-sans text-sm text-body outline-none transition-all placeholder:text-muted/70 focus:border-gold focus:ring-2 focus:ring-[var(--gold-focus-ring)]";
-const labelCompact = "mb-1 block font-sans text-[11px] font-semibold text-navy";
+const labelCompact = "mb-1 block font-sans text-[11px] font-semibold text-teal";
 
 export default function CompactQuoteForm({
   onSuccess,
@@ -21,14 +22,19 @@ export default function CompactQuoteForm({
   submitLabel = "Submit via WhatsApp",
   className = "",
 }) {
+  const whatsapp = useWhatsAppNumber();
   const [form, setForm] = useState({
     name: "",
     phone: "",
     location: meta.location || "",
     plotSize: "",
-    requirements: meta.packageName
-      ? `Interested in ${meta.packageName} package`
-      : "",
+    requirements: meta.requirements
+      ? meta.requirements
+      : meta.packageName
+        ? `Interested in ${meta.packageName} package`
+        : meta.projectInterest
+          ? `Interested in project at ${meta.projectInterest}`
+          : "",
     consent: false,
   });
   const [errors, setErrors] = useState({});
@@ -57,7 +63,8 @@ export default function CompactQuoteForm({
           packageName: meta.packageName,
           projectInterest: meta.projectInterest,
         }
-      )
+      ),
+      whatsapp
     );
     onSuccess?.();
   };

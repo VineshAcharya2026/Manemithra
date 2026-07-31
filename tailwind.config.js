@@ -4,10 +4,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        gold: "#FCA311",
-        "gold-hover": "#e69400",
-        navy: "#14213D",
-        "navy-dark": "#0d1528",
+        gold: "#C89A3A",
+        "gold-hover": "#B08832",
+        teal: "#123C42",
+        "logo-teal": "#123C42",
+        "teal-dark": "#0A2E33",
+        silver: "#D9D9D9",
         black: "#000000",
         white: "#FFFFFF",
         grayLight: "#E5E5E5",

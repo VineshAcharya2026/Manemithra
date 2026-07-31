@@ -1,7 +1,11 @@
+import { useWhatsAppNumber } from "../hooks/useWhatsAppNumber";
+
 export default function WhatsAppFAB() {
+  const whatsapp = useWhatsAppNumber();
+
   return (
     <a
-      href="https://wa.me/919686796232"
+      href={`https://wa.me/${whatsapp}`}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat on WhatsApp"

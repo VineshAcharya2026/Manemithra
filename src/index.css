@@ -1,10 +1,13 @@
 @import "tailwindcss";
 
-/* ── Design tokens (CSS variables) ───────────────────────────────────── */
+/* ── Mane Mithra design tokens ─────────────────────────────────────── */
 :root {
-  --primary-gold: #fca311;
-  --primary-gold-hover: #e69400;
-  --primary-navy: #14213d;
+  --royal-gold: #c89a3a;
+  --royal-gold-hover: #b08832;
+  --deep-teal: #123c42;
+  --logo-teal: #123c42;
+  --teal-dark: #0a2e33;
+  --platinum-silver: #d9d9d9;
   --black: #000000;
   --white: #ffffff;
   --gray-light: #e5e5e5;
@@ -12,16 +15,17 @@
   --text-body: #333333;
   --text-muted: #666666;
   --row-hover: #f8f9fa;
-  --gold-muted: rgba(252, 163, 17, 0.15);
-  --gold-focus-ring: rgba(252, 163, 17, 0.15);
-  --navy-dark: #0d1528;
+  --gold-muted: rgba(200, 154, 58, 0.15);
+  --gold-focus-ring: rgba(200, 154, 58, 0.2);
 }
 
 @theme {
-  --color-gold: #fca311;
-  --color-gold-hover: #e69400;
-  --color-navy: #14213d;
-  --color-navy-dark: #0d1528;
+  --color-gold: #c89a3a;
+  --color-gold-hover: #b08832;
+  --color-teal: #123c42;
+  --color-logo-teal: #123c42;
+  --color-teal-dark: #0a2e33;
+  --color-silver: #d9d9d9;
   --color-black: #000000;
   --color-white: #ffffff;
   --color-gray-light: #e5e5e5;
@@ -32,12 +36,12 @@
   --color-success-bg: #e8f5e9;
   --color-success-text: #2e7d32;
   --color-warning-bg: #fff8e1;
-  --color-warning-text: #fca311;
+  --color-warning-text: #c89a3a;
   --color-error-bg: #fdecea;
   --color-error-text: #d32f2f;
 
-  --font-sans: "DM Sans", system-ui, sans-serif;
-  --font-serif: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Montserrat", system-ui, sans-serif;
+  --font-serif: "Cinzel", Georgia, serif;
 }
 
 @layer base {
@@ -55,7 +59,7 @@
   h4,
   h5,
   h6 {
-    @apply font-bold text-navy;
+    @apply font-serif font-bold text-teal;
   }
 }
 
@@ -64,8 +68,12 @@
     @apply cursor-pointer rounded-lg border-none bg-gold px-6 py-3 font-sans text-sm font-semibold text-white transition-colors duration-200 hover:bg-gold-hover;
   }
 
+  .nav-cta {
+    @apply cursor-pointer rounded-lg border-none bg-gold px-7 py-2.5 font-sans text-[11px] font-bold tracking-[0.12em] text-white uppercase transition-colors duration-200 hover:bg-gold-hover md:px-8 md:py-3 md:text-xs;
+  }
+
   .btn-secondary {
-    @apply cursor-pointer rounded-lg border-none bg-navy px-6 py-3 font-sans text-sm font-semibold text-white transition-colors duration-200 hover:bg-navy-dark;
+    @apply cursor-pointer rounded-lg border-none bg-teal px-6 py-3 font-sans text-sm font-semibold text-white transition-colors duration-200 hover:bg-teal-dark;
   }
 
   .btn-danger {
@@ -138,10 +146,44 @@
     @apply bg-white;
   }
 
-  /* Hero: keep main block + stats visible in one screen when possible */
+  /** Logo + hero — continuous dark teal with subtle texture */
+  .bg-brand-hero {
+    background-color: var(--logo-teal);
+    background-image:
+      radial-gradient(ellipse 120% 80% at 50% -20%, rgba(200, 154, 58, 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse 80% 60% at 100% 50%, rgba(255, 255, 255, 0.03) 0%, transparent 45%),
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  }
+
+  .nav-logo-wrap {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: flex-start;
+    align-self: center;
+    padding-top: 0.375rem;
+    padding-left: 0.5rem;
+    background-color: var(--logo-teal);
+  }
+
+  .nav-logo-img {
+    @apply m-0 block w-auto max-w-[min(48vw,220px)] object-contain object-center p-0 sm:max-w-[260px] md:max-w-[300px];
+    height: 3.25rem;
+  }
+
+  @media (min-width: 768px) {
+    .nav-logo-wrap {
+      padding-top: 0.5rem;
+      padding-left: 0.625rem;
+    }
+
+    .nav-logo-img {
+      height: 5.25rem;
+    }
+  }
+
   #home {
-    min-height: 100svh;
-    min-height: 100dvh;
+    min-height: min(100svh, auto);
   }
 }
 

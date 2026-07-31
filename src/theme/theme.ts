@@ -4,28 +4,28 @@ export const theme = {
   colors,
 
   typography: {
-    heading: colors.primaryNavy,
+    heading: colors.deepTeal,
     body: colors.body,
     muted: colors.muted,
     onDark: colors.white,
   },
 
   layout: {
-    sidebar: colors.primaryNavy,
+    sidebar: colors.deepTeal,
     navbar: colors.white,
     mainBackground: colors.surface,
-    footer: colors.primaryNavy,
+    footer: colors.deepTeal,
   },
 
   buttons: {
     primary: {
-      bg: colors.primaryGold,
-      bgHover: colors.primaryGoldHover,
+      bg: colors.royalGold,
+      bgHover: colors.royalGoldHover,
       text: colors.white,
     },
     secondary: {
-      bg: colors.primaryNavy,
-      bgHover: colors.navyDark,
+      bg: colors.deepTeal,
+      bgHover: colors.tealDark,
       text: colors.white,
     },
     danger: {
@@ -38,12 +38,12 @@ export const theme = {
   forms: {
     border: colors.grayLight,
     background: colors.white,
-    focusBorder: colors.primaryGold,
+    focusBorder: colors.royalGold,
     focusRing: colors.goldFocusRing,
   },
 
   table: {
-    headerBg: colors.primaryNavy,
+    headerBg: colors.deepTeal,
     headerText: colors.white,
     rowBg: colors.white,
     rowHover: colors.rowHover,
@@ -58,7 +58,7 @@ export const theme = {
 
   metricIcon: {
     background: colors.goldMuted,
-    color: colors.primaryGold,
+    color: colors.royalGold,
   },
 
   badges: {
@@ -69,7 +69,7 @@ export const theme = {
 
   sidebar: {
     default: colors.grayLight,
-    activeBg: colors.primaryGold,
+    activeBg: colors.royalGold,
     activeText: colors.white,
     hoverBg: colors.goldMuted,
   },

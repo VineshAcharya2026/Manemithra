@@ -28,8 +28,8 @@ export function Heading({
   return (
     <h2
       id={id}
-      className={`font-bold leading-tight ${sizes[size]} ${
-        light ? "text-white" : "text-navy"
+      className={`font-serif font-bold leading-tight ${sizes[size]} ${
+        light ? "text-white" : "text-teal"
       } ${className}`}
     >
       {children}

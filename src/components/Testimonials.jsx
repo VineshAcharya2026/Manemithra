@@ -1,12 +1,65 @@
 import { useState } from "react";
 import { SectionHeader, SectionShell } from "./ui";
 import { Card } from "./ui/Card";
-import { TESTIMONIALS } from "../lib/constants";
+import SectionViewAll from "./SectionViewAll";
+import { useSiteContent } from "../hooks/useSiteContent";
+import { ROUTES } from "../lib/routes";
 import { Reveal } from "../hooks/useScrollReveal";
 
-export default function Testimonials() {
+function TestimonialQuoteCard({ t }) {
+  return (
+    <Card variant="elevated" padding="lg" className="relative h-full min-h-[220px]">
+      <span
+        className="pointer-events-none absolute top-4 left-6 font-serif text-[64px] leading-none text-gray-light select-none"
+        aria-hidden="true"
+      >
+        "
+      </span>
+      <p className="relative z-10 mb-6 font-serif text-base leading-relaxed text-body italic md:text-lg">
+        {t.quote}
+      </p>
+      <div className="flex items-center justify-between gap-4 border-t border-gray-light pt-4">
+        <div>
+          <div className="font-sans text-sm font-bold text-teal">{t.name}</div>
+          <div className="font-sans text-xs text-muted">📍 {t.location}</div>
+        </div>
+        <div className="flex gap-0.5" aria-label={`${t.rating} stars`}>
+          {Array.from({ length: t.rating }).map((_, i) => (
+            <span key={i} className="text-sm text-gold">
+              ★
+            </span>
+          ))}
+        </div>
+      </div>
+    </Card>
+  );
+}
+
+export default function Testimonials({ preview = false }) {
+  const { data } = useSiteContent("testimonials");
+  const TESTIMONIALS = data?.items ?? [];
   const [active, setActive] = useState(0);
-  const t = TESTIMONIALS[active];
+  const t = TESTIMONIALS[active] ?? TESTIMONIALS[0];
+
+  if (preview) {
+    return (
+      <SectionShell id="testimonials">
+        <Reveal>
+          <SectionHeader label="Testimonials" title="Stories From Happy Homeowners" />
+        </Reveal>
+
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+          {TESTIMONIALS.slice(0, 2).map((item) => (
+            <Reveal key={item.name}>
+              <TestimonialQuoteCard t={item} />
+            </Reveal>
+          ))}
+        </div>
+
+        <SectionViewAll to={ROUTES.testimonials} label="Read more stories" />
+      </SectionShell>
+    );
+  }
 
   return (
     <SectionShell id="testimonials">
@@ -33,7 +86,7 @@ export default function Testimonials() {
                 >
                   <div className="flex items-center justify-between gap-2">
                     <div>
-                      <p className="font-sans text-sm font-bold text-navy">{item.name}</p>
+                      <p className="font-sans text-sm font-bold text-teal">{item.name}</p>
                       <p className="font-sans text-xs text-muted">📍 {item.location}</p>
                     </div>
                     <div className="flex shrink-0 gap-0.5">
@@ -71,7 +124,7 @@ export default function Testimonials() {
             </p>
             <div className="flex items-center justify-between gap-4 border-t border-gray-light pt-6">
               <div>
-                <div className="font-sans text-base font-bold text-navy">{t.name}</div>
+                <div className="font-sans text-base font-bold text-teal">{t.name}</div>
                 <div className="font-sans text-sm text-muted">📍 {t.location}</div>
               </div>
               <div className="flex gap-1" aria-label={`${t.rating} stars`}>

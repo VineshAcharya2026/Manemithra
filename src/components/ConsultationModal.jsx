@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import { CTAButton } from "./ui";
 import CompactQuoteForm from "./CompactQuoteForm";
 import { useLockBodyScroll } from "../hooks/useLockBodyScroll";
+import { useSiteContent } from "../hooks/useSiteContent";
 
 export default function ConsultationModal({ onClose, meta = {} }) {
+  const { data: brand } = useSiteContent("brand");
   const [submitted, setSubmitted] = useState(false);
 
   useLockBodyScroll(true);
@@ -37,9 +39,9 @@ export default function ConsultationModal({ onClose, meta = {} }) {
         <div className="flex items-start justify-between gap-3 border-b border-gray-light px-4 py-3">
           <div className="min-w-0">
             <p className="font-sans text-[10px] font-bold tracking-widest text-gold uppercase">
-              Manemithra
+              {brand?.name || "Mane Mithra"}
             </p>
-            <h2 id="modal-title" className="truncate font-sans text-base font-bold text-navy">
+            <h2 id="modal-title" className="truncate font-serif text-base font-bold text-teal">
               {submitted ? "Thank you!" : title}
             </h2>
             {!submitted && (
@@ -52,7 +54,7 @@ export default function ConsultationModal({ onClose, meta = {} }) {
             type="button"
             aria-label="Close"
             onClick={onClose}
-            className="flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center rounded-lg text-lg text-muted transition-colors hover:bg-surface hover:text-navy"
+            className="flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center rounded-lg text-lg text-muted transition-colors hover:bg-surface hover:text-teal"
           >
             ×
           </button>

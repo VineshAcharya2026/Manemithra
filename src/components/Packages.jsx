@@ -1,6 +1,8 @@
 import { Badge, SectionHeader, SectionShell } from "./ui";
 import { Card } from "./ui/Card";
-import { PACKAGES } from "../lib/constants";
+import SectionViewAll from "./SectionViewAll";
+import { useSiteContent } from "../hooks/useSiteContent";
+import { ROUTES } from "../lib/routes";
 import { useConsult } from "../context/ConsultContext";
 import { Reveal } from "../hooks/useScrollReveal";
 
@@ -21,7 +23,7 @@ function PackageCard({ pkg }) {
 
       <div className={`mb-4 h-3 w-3 rounded-full ${pkg.dot}`} />
 
-      <h3 className={`mb-1 font-sans text-2xl font-bold ${featured ? "text-gold" : "text-navy"}`}>
+      <h3 className={`mb-1 font-serif text-2xl font-bold ${featured ? "text-gold" : "text-teal"}`}>
         {pkg.name}
       </h3>
 
@@ -67,24 +69,36 @@ function PackageCard({ pkg }) {
   );
 }
 
-export default function Packages() {
+export default function Packages({ preview = false }) {
+  const { data } = useSiteContent("packages");
+  const PACKAGES = data?.items ?? [];
+  const items = preview
+    ? PACKAGES.filter((p) => ["Essential", "Premium", "Luxury"].includes(p.name))
+    : PACKAGES;
+
   return (
-    <SectionShell id="packages" alt>
+    <SectionShell id="packages" alt={!preview}>
       <Reveal>
         <SectionHeader
           label="Our Packages"
           title="Explore Our Popular Packages"
-          description="From essential to ultra-luxury, every package comes with a fixed-cost guarantee, dedicated project management, and zero subcontracting."
+          description="From essential to ultra-luxury — fixed-cost transparency, dedicated project management, and in-house execution you can trust."
         />
       </Reveal>
 
-      <div className="grid grid-cols-1 items-stretch gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-        {PACKAGES.map((p) => (
+      <div
+        className={`grid grid-cols-1 items-stretch gap-5 sm:grid-cols-2 ${
+          preview ? "lg:grid-cols-3" : "lg:grid-cols-3 xl:grid-cols-5"
+        }`}
+      >
+        {items.map((p) => (
           <Reveal key={p.name} className="h-full">
             <PackageCard pkg={p} />
           </Reveal>
         ))}
       </div>
+
+      {preview && <SectionViewAll to={ROUTES.packages} label="View all packages" />}
     </SectionShell>
   );
 }

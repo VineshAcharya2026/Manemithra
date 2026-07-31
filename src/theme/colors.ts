@@ -1,11 +1,15 @@
 /**
- * Manemithra design system — Black, Gold, White, Navy Blue
- * Single source of truth for all color values.
+ * Mane Mithra design system — Royal Gold, Deep Emerald Teal, Platinum Silver
+ * @see ManeMithra brand Guidelines.pdf
  */
 export const colors = {
-  primaryGold: "#FCA311",
-  primaryGoldHover: "#e69400",
-  primaryNavy: "#14213D",
+  royalGold: "#C89A3A",
+  royalGoldHover: "#B08832",
+  deepTeal: "#123C42",
+  /** Matches Mane Mithra logo.jpeg background */
+  logoTeal: "#123C42",
+  tealDark: "#0A2E33",
+  platinumSilver: "#D9D9D9",
   black: "#000000",
   white: "#FFFFFF",
   grayLight: "#E5E5E5",
@@ -18,13 +22,12 @@ export const colors = {
   successBg: "#E8F5E9",
   successText: "#2E7D32",
   warningBg: "#FFF8E1",
-  warningText: "#FCA311",
+  warningText: "#C89A3A",
   errorBg: "#FDECEA",
   errorText: "#D32F2F",
 
-  goldMuted: "rgba(252, 163, 17, 0.15)",
-  goldFocusRing: "rgba(252, 163, 17, 0.15)",
-  navyDark: "#0d1528",
+  goldMuted: "rgba(200, 154, 58, 0.15)",
+  goldFocusRing: "rgba(200, 154, 58, 0.2)",
 } as const;
 
 export type ThemeColor = keyof typeof colors;
